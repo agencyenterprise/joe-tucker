@@ -5,11 +5,13 @@ import HomePage from './home-page'
 
 const getPosts = cache(async () => {
   return await prisma.post.findMany({
-    select: {
-      id: true,
-      title: true,
-      content: true,
-    },
+    include: {
+      author: {
+        select: {
+          name: true
+        }
+      }
+    }
   })
 })
 

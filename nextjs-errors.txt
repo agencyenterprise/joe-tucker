@@ -1,0 +1,26 @@
+Runtime Error
+Server
+
+Error: A "use server" file can only export async functions, found object.
+Read more: https://nextjs.org/docs/messages/invalid-use-server-value
+
+Call Stack
+12
+
+Show 4 ignore-listed frame(s)
+eval
+rsc:/Server/webpack-internal:///(action-browser)/lib/openai.ts (18:91)
+./lib/openai.ts
+rsc:/Server/J:%5CCode%20Projects%5Cae-test%5Cjoe-tucker%5C.next%5Cserver%5Capp%5Cnew-post%5Cpage.js (33:1)
+__webpack_require__
+rsc:/Server/J:%5CCode%20Projects%5Cae-test%5Cjoe-tucker%5C.next%5Cserver%5Cwebpack-runtime.js (33:42)
+eval
+rsc:/Server/webpack-internal:///(action-browser)/app/new-post/actions.ts (12:69)
+./app/new-post/actions.ts
+rsc:/Server/J:%5CCode%20Projects%5Cae-test%5Cjoe-tucker%5C.next%5Cserver%5Capp%5Cnew-post%5Cpage.js (22:1)
+__webpack_require__
+rsc:/Server/J:%5CCode%20Projects%5Cae-test%5Cjoe-tucker%5C.next%5Cserver%5Cwebpack-runtime.js (33:42)
+./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22J%3A%5C%5CCode%20Projects%5C%5Cae-test%5C%5Cjoe-tucker%5C%5Capp%5C%5Cnew-post%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%227f54630e0102142a2c358171e431ebb2c8a519de6b%22%2C%22exportedName%22%3A%22generateDraft%22%7D%2C%7B%22id%22%3A%227fe64cdf054d3f156edb151d9fe1e71faedc6586fb%22%2C%22exportedName%22%3A%22newPost%22%7D%5D%5D%5D&__client_imported__=true!
+rsc:/Server/J:%5CCode%20Projects%5Cae-test%5Cjoe-tucker%5C.next%5Cserver%5Capp%5Cnew-post%5Cpage.js (44:1)
+Object.__webpack_require__ [as require]
+rsc:/Server/J:%5CCode%20Projects%5Cae-test%5Cjoe-tucker%5C.next%5Cserver%5Cwebpack-runtime.js (33:42)

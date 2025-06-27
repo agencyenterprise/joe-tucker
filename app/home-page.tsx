@@ -4,6 +4,9 @@ interface Post {
   id: number
   title: string
   content: string | null
+  author: {
+    name: string
+  }
 }
 
 interface Props {
@@ -20,6 +23,7 @@ export default function HomePage({ posts }: Props) {
         {posts.map(post => (
           <li className="border border-gray-500 rounded-md shadow-md p-4 bg-white w-96" key={post.id}>
             <h2 className="font-semibold">{post.title}</h2>
+            <p className="text-sm text-gray-600">By: {post.author.name}</p>
             <p>{post.content}</p>
           </li>
         ))}

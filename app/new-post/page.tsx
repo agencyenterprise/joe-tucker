@@ -2,18 +2,32 @@
 
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { newPost } from './actions'
+import { newPost, generateDraft } from './actions'
+import { useEffect, useState } from 'react'
+import prisma from '@/prisma/client'
 
 export default function NewPost() {
+  const [authors, setAuthors] = useState<{id: number, name: string}[]>([])
+  const [keywords, setKeywords] = useState('')
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm<{
     authorId: number
     title: string
     content?: string
   }>()
+
+  useEffect(() => {
+    const fetchAuthors = async () => {
+      const response = await fetch('/api/authors')
+      const data = await response.json()
+      setAuthors(data)
+    }
+    fetchAuthors()
+  }, [])
 
   const router = useRouter()
 
@@ -32,8 +46,9 @@ export default function NewPost() {
             Author
           </label>
           <select className="p-2 border border-gray-400 rounded-sm" id="author" {...register('authorId')}>
-            <option value={1}>Alice</option>
-            <option value={2}>Bob</option>
+            {authors.map(author => (
+              <option key={author.id} value={author.id}>{author.name}</option>
+            ))}
           </select>
         </div>
         <div className="flex flex-col">
@@ -58,8 +73,17 @@ export default function NewPost() {
               id="keywords"
               className="p-2 border border-gray-400 rounded-sm flex-1"
               placeholder="software development, AI, ChatGPT"
+              onChange={(e) => setKeywords(e.target.value)}
             />
-            <button type="button" className="border border-orange-600 rounded-sm p-2 bg-orange-400 text-white font-bold">
+            <button 
+              type="button" 
+              className="border border-orange-600 rounded-sm p-2 bg-orange-400 text-white font-bold"
+              onClick={async () => {
+                if (!keywords) return;
+                const draft = await generateDraft(keywords);
+                setValue('content', draft);
+              }}
+            >
               Generate
             </button>
           </div>
